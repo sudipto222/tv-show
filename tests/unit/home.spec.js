@@ -35,3 +35,19 @@ it('has a button', () => {
     const wrapper = mount(Home);
     expect(wrapper.contains('button')).toBe(true)
   })
+
+describe('Home', () => {
+it('search for an input', () => {
+const Constructor = Vue.extend(Home);
+const HomeComponent = new Constructor().$mount();
+
+HomeComponent.newItem = 'girls';
+
+const button = HomeComponent.$el.querySelector('button');
+const clickEvent = new window.Event('click');
+button.dispatchEvent(clickEvent);
+HomeComponent._watcher.run();
+
+expect(Array.isArray(['searchResult'])).toBe(true);
+})
+})
